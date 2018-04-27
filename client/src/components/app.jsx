@@ -4,7 +4,6 @@ import Chirp from "./chirp";
 import Chirper from "./chirper";
 import Post from "./post";
 import Details from "./details";
-import Delete from "./delete";
 import Edit from "./edit";
 
 class App extends Component {
@@ -12,13 +11,11 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <Link to="/post">Goodbye</Link>
           <Switch>
             <Route exact path="/" component={Chirp} />
-            <Route path="/post" component={Post} />
-            <Route path="/delete" component={Delete} />
-            <Route path="/details" component={Details} />
-            <Route path="/edit" component={Edit} />
+            <Route exact path="/post" component={Post} />
+            <Route exact path="/details/:id" component={Details} />
+            <Route exact path="/edit/:id" component={Edit} />
             <Route exact path="/chirper" component={Chirper} />
           </Switch>
         </Fragment>
