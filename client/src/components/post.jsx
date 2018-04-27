@@ -17,8 +17,7 @@ class Post extends Component {
     event.preventDefault();
     const url = '/api/chirps'
 
-    let data = this.state
-    console.log(data);
+ 
     
     fetch(url, {
         method: 'POST', 
