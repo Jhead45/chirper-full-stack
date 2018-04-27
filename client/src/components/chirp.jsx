@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
 import Chirper from './chirper';
+import Post from './post';
 import "isomorphic-fetch";
 
 
@@ -38,12 +39,17 @@ class Chirp extends Component {
     };
     render() {
         return (
+            <div>
             <div className="d-flex justify-content-center">
-                <table className="table table-dark w-50">
+                <table className="table table-dark w-75">
                     <tbody>
                  {this.state.text.map(text => <Chirper key={text.id} value={text} />)}
                     </tbody>
                 </table>
+            </div>
+                
+                    <Post />
+                
             </div>
         );
     };
