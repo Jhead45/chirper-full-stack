@@ -14,7 +14,7 @@ class Chirper extends Component {
         return (
                     
           <tr className="text-center">
-            <td>{this.props.value.text}</td>
+            <td className='text-warning w-75'>{this.props.value.text}</td>
             <td><Link to={`/details/${this.props.value.id}`}>See Details</Link>
             </td>
           </tr>

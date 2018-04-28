@@ -1,0 +1,50 @@
+body {
+    background-color: lightslategray;
+}
+
+#heading {
+    text-shadow: 5px 2px 5px rgb(95, 85, 85), 0px 5px 5px rgb(13, 13, 14);
+}
+
+form {
+    width: 900px;
+    padding: 0px, 0px, 0px, 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+a:link, a:visited {
+    background-color: #22252a;
+    color: #ffc107;
+    padding: 14px 25px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    
+}
+
+a:hover {
+    background-color: #ffc107;
+    color: #22252a;
+}
+
+table {
+    width: 900px;
+}
+
+.goldText {
+    color: #ffc107;
+    font-weight: 700;
+    
+}
+
+.button {
+    width: 121.39px;
+    height: 52px;
+    border-radius: 0px;
+    background-color: #22252a;
+    border: 0px;
+}
+
+td {
+    vertical-align: middle !important;
+}

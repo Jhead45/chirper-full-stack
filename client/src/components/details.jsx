@@ -14,13 +14,11 @@ class Details extends Component {
 
   componentDidMount() {
     const url = `/api/chirps/${this.urlId}`;
-    // console.log(url);
 
     fetch(url)
       .then(result => result.json())
       .then(result => {
           this.setState({ text: result });
-        // console.log(this.state.text.text);
         
     })
   }
@@ -41,11 +39,12 @@ class Details extends Component {
   render() {
     return (
         <div className="d-flex justify-content-center">
-            <div>
-                <h1>Chirp Details:</h1>
+            <div className='align-content-center'>
+                <h1 className='display-1 goldText'>Chirp Details:</h1>
                 <h2 className='text-center'>{this.state.text.text}</h2>
-                <button className='bg-dark text-warning' onClick={(e) => this.handleClick(e)}>X (delete)</button>
-                <Link to={`/edit/${this.urlId}`}>Edit Chirp</Link>
+                <p className='d-flex justify-content-center mt-3'>
+                <button className='justify-content-center btn-lg button text-warning' onClick={(e) => this.handleClick(e)}>X (delete)</button>
+                <Link to={`/edit/${this.urlId}`}>Edit Chirp</Link></p>
 
 
             </div>

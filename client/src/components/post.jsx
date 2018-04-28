@@ -33,14 +33,13 @@ class Post extends Component {
 
 
   render() {
-    //  console.log(this.state);
     return (
-      <div>
+      <div className='d-flex justify-content-center'>
         <form
           className="d-flex justify-content-center mb-3 form-control-lg"
           onSubmit={(e) => this.handleForm(e, this.state.text)}
         >
-          <input
+          <input className='w-100'
             placeholder="Write a message!"
             value={this.state.text}
             onChange={(event) => this.onInputChange(event.target.value)}

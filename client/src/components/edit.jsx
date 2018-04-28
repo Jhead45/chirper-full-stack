@@ -7,18 +7,18 @@ class Edit extends Component {
         super(props);
         this.state = { text: ''};
         this.urlId = this.props.match.params.id;
-        // console.log(this.props.match.params.id);
     }
 
     componentDidMount() {
         const url = `/api/chirps/${this.urlId}`;
-        // console.log(url);
     
         fetch(url)
           .then(result => result.json())
           .then(result => {
-              this.setState({ text: result });
-            // console.log(this.state.text.text);
+              console.log(result.text);
+              let text = result.text;
+              this.setState({ text });
+            console.log(this.state.text);
             
         })
       }
@@ -31,7 +31,7 @@ class Edit extends Component {
       handleForm(e, text) {
         event.preventDefault();
         const url2 = `/api/chirps/${this.urlId}`;
-        // this.props.history.push('/');
+        this.props.history.push('/');
     
      
         
@@ -56,7 +56,7 @@ class Edit extends Component {
           >
             <input
               placeholder="Write a message!"
-              value={this.state.text.text}
+              value={this.state.text}
               onChange={(event) => this.onInputChange(event.target.value)}
             />
             <br />
