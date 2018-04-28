@@ -50,6 +50,7 @@ class Edit extends Component {
 
     render() {
         return (
+          <div className="d-flex justify-content-center">
             <form
             className="d-flex justify-content-center mb-3 form-control-lg"
             onSubmit={(e) => this.handleForm(e, this.state.text)}
@@ -64,6 +65,7 @@ class Edit extends Component {
               Save Changes
             </button>
           </form>
+          </div>
         )
     }
 }
