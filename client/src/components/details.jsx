@@ -14,13 +14,13 @@ class Details extends Component {
 
   componentDidMount() {
     const url = `/api/chirps/${this.urlId}`;
-    console.log(url);
+    // console.log(url);
 
     fetch(url)
       .then(result => result.json())
       .then(result => {
           this.setState({ text: result });
-        console.log(this.state.text.text);
+        // console.log(this.state.text.text);
         
     })
   }
