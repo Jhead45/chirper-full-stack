@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 class Details extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: ''};
+    this.state = { text: []};
     this.urlId = props.match.params.id;
   }
 
@@ -18,9 +18,9 @@ class Details extends Component {
     fetch(url)
       .then(result => result.json())
       .then(result => {
-          this.setState({ text: result });
-        
-    })
+          this.setState({ text: result[0] })
+        })
+        .catch(error => console.log('Error'));
   }
 
   handleClick(e) {
@@ -30,8 +30,12 @@ class Details extends Component {
         headers: new Headers({
           'Content-Type': 'application/json; charset=utf-8'
         })
-      }).then(res => this.props.history.push('/'))
-      .catch(error => console.error('Error'))
+      }).then((res) => {
+        location.reload();
+        this.props.history.replace('/')
+      }).catch(error => console.log('Error'));
+      
+      
 
   }
 

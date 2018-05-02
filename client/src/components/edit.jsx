@@ -15,10 +15,9 @@ class Edit extends Component {
         fetch(url)
           .then(result => result.json())
           .then(result => {
-              console.log(result.text);
-              let text = result.text;
+              let text = result[0].text;
+              // console.log(text);
               this.setState({ text });
-            console.log(this.state.text);
             
         })
       }
@@ -31,18 +30,18 @@ class Edit extends Component {
       handleForm(e, text) {
         event.preventDefault();
         const url2 = `/api/chirps/${this.urlId}`;
-        this.props.history.push('/');
-    
-     
-        
+          
         fetch(url2, {
             method: 'PUT', 
             body: JSON.stringify({text}), 
             headers: new Headers({
               'Content-Type': 'application/json; charset=utf-8'
             })
-          }).then(res => console.log('Success!'))
-          .catch(error => console.error('Error'))
+          }).then((res) => {
+            console.log('Success!');
+            location.reload();
+            this.props.history.replace('/');
+          }).catch(error => console.error('Error'))
         
     
       }
@@ -56,8 +55,8 @@ class Edit extends Component {
             onSubmit={(e) => this.handleForm(e, this.state.text)}
           >
             <input
-              placeholder="Write a message!"
-              value={this.state.text}
+              placeholder={this.state.text}
+              value={this.state.value}
               onChange={(event) => this.onInputChange(event.target.value)}
             />
             <br />

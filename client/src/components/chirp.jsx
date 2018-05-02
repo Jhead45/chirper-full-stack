@@ -16,20 +16,11 @@ class Chirp extends Component {
     fetch(url)
       .then(result => result.json())
       .then(result => {
-        let keys = Object.keys(result);
+        console.log(result);
+        this.setState({ text: result });
+      })
+      .catch(error => console.log('Error'));
 
-        let chirpArr = [];
-        for (let i of keys) {
-          if (i !== "nextid") {
-            let chirp = {
-              text: result[i].text,
-              id: i
-            };
-            chirpArr.push(chirp);
-          }
-        }
-        this.setState({ text: chirpArr });
-      });
   }
   render() {
     return (
