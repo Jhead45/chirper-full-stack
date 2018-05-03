@@ -156,7 +156,7 @@ function locateMentions(text, chirpid) {
         
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
-            connection.query(`SELECT id FROM users WHERE name LiKE '%${name}%'`, (err, results, fields) => {
+            connection.query(`SELECT id FROM users WHERE name LIKE '%${name}%'`, (err, results, fields) => {
 
                 if (err) {
                     reject(err);
@@ -176,6 +176,8 @@ function locateMentions(text, chirpid) {
             });
         });
     }) 
+    } else {
+        console.log('No mentions in this chirp!');
     }
    }
 }
