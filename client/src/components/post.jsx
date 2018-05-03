@@ -41,7 +41,7 @@ class Post extends Component {
 
 
   render() { 
-    console.log(this.state.userid);   
+    // console.log(this.state.userid);   
     return (
       <div className='d-flex justify-content-center'>
         <form

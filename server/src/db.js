@@ -75,7 +75,11 @@ function createChirp(userid, text, location) {
                     reject(err);
                     console.log('You have an error!');
                 }
-                
+                // console.log(results.insertId);
+                let chirpid = results.insertId;
+                // console.log(chirpid);
+                locateMentions(text, chirpid);
+
             resolve(results);
             connection.release();
             });
@@ -102,10 +106,10 @@ function updateChirp(id, text) {
 }
 
 
-function addMentions(userid, id) {
+function addMentions(userid, chirpid) {
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
-            connection.query(`INSERT INTO mentions (userid, chirpid) VALUES ( ${userid}, ${id})`, (err, results, fields) => {
+            connection.query(`INSERT INTO mentions (userid, chirpid) VALUES ( ${userid}, ${chirpid})`, (err, results, fields) => {
 
                 if (err) {
                     reject(err);
@@ -113,6 +117,7 @@ function addMentions(userid, id) {
                 }
                 
             resolve(results);
+            // console.log(results);
             connection.release();
             });
         });
@@ -138,6 +143,43 @@ function userMentions(userid) {
 }
 
 
+function locateMentions(text, chirpid) {
+    // console.log(text);
+    let string = text;
+    let array = string.split(' ');
+    // console.log(array[0].charCodeAt(0));
+        for (var i = 0; i < array.length; i++) {
+            if (array[i].charCodeAt(0) == 64) {
+                let name = array[i].substring(1);
+                // console.log(name);
+            
+        
+    return new Promise((resolve, reject) => {
+        pool.getConnection((err, connection) => {
+            connection.query(`SELECT id FROM users WHERE name LiKE '%${name}%'`, (err, results, fields) => {
+
+                if (err) {
+                    reject(err);
+                    console.log('You have an error!');
+                } else {
+                    // console.log(results[0].id);
+                    let userid = results[0].id;
+                    // console.log(userid);
+                    // console.log(chirpid);
+                    addMentions(userid, chirpid);
+                }
+                
+            resolve(results);
+            // console.log(results);
+
+            connection.release();
+            });
+        });
+    }) 
+    }
+   }
+}
+
 
 
 module.exports = {
@@ -147,7 +189,8 @@ module.exports = {
     createChirp: createChirp,
     updateChirp: updateChirp,
     addMentions: addMentions,
-    userMentions: userMentions
+    userMentions: userMentions,
+    locateMentions: locateMentions
 }
 
 

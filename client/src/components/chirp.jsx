@@ -23,6 +23,8 @@ class Chirp extends Component {
 
   }
   render() {
+   console.log(this.state.text);
+
     return (
       <div>
         <h1 className='display-1 text-warning text-center' id='heading'>Chirper!</h1>
