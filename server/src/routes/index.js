@@ -8,5 +8,3 @@ router.use('/chirps', chirpsRouter);
 router.use('/mentions', mentionsRouter);
 
 export default router;
-
-

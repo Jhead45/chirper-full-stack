@@ -1,30 +1,58 @@
-In this lab, you will combine two concepts:
-
-Building and serving an API using Express
-Building a ReactJS front-end that consumes that API
-You'll need to combine these two concepts into one project folder.
-
-API
-Your API should already be completed. Bring it into this project, making sure to observe the project structure discussed in lecture. Transition to using ES6 import/export syntax.
-
-Front-End
-Create a ReactJS front-end, observing the project structure discussed in lecture. The front-end should have a router that shows a list of chirps as the main page. There should be a form for creating a new chirp. Use an onClick event on the button to submit a POST request to your api using the fetch API.
-
-Each chirp should contain a button that says See Details. When that button is clicked, you should go to a page that specializes in displaying info for a single chirp.
-
-On the page for a single chirp, you should make a GET request for the specific chirp. Display the chirp information on the page. Have an X button on the page that will trigger a DELETE request to the API for that chirp. Send the user back to the main page when the chirp is successfully deleted. You should also have an Edit link that will send the user to a page that specializes in editing a single chirp.
-
-On the page for editing a single chirp, you should have a form that is prefilled with the current value of the chirp data. The user should be able to make changes and then click an update button to trigger a PUT request to the API for that chirp. When the update is successful, send the user back to the main page.
-
-Hints
-Use the Fetch API in your front-end code for making all your API requests (GET, POST, PUT, DELETE)
-See MDN, specifically "Uploading JSON Data" in the "Making Fetch Requests" section
-You will find front-end route params and this.props.match.params to be useful in this lab
-Recommended front-end paths are as follows:
-/ for the main page that displays the list of chirps and a form
-/chirp/:id/edit for the page that displays a chirp edit form
-/chirp/:id for the page that displays a single chirp
-Any component that is presented by the Router (e.g. your "pages") will have access to this.props.history. This is necessary to kick off navigation from your code. (in response to something being completed, etc.)
-this.props.history.push('/something') allows you to navigate to the page that responds to the path /something
-this.props.history.replace('/something') can be used to navigate to that path, but not keep a record of where we currently are (we are replacing the current browser history entry, with this new page we are going to. This is useful if we don't want someone to be able to click the back button and return to this page)
-this.props.history.goBack() can be used to navigate back one page in the browser history
+REQUIRED (Database)
+Create a database user named
+chirprapp
+.
+Grant all privileges to your
+chirpr
+database.
+Hint: use
+chirpr.*
+in the
+ON
+part of the
+GRANT
+statement.
+Create a table named
+Mentions
+with the following fields/columns:
+Mentions
+  userid
+  chirpid
+Create a stored procedure named
+spUserMentions
+that returns all chirps a user is mentioned in
+Parameters:
+userid
+The result set should contain: chirpid, chip text, chirp date
+Tip: be sure to insert some fake mentions so that you can test the procedure!
+REQUIRED (Node)
+In your chirpr API, use your database to store chirps instead of a file
+Install and save the
+mysql
+NodeJS package using NPM
+Configure your connection using
+createConnection
+In each API method, make the appropriate database call to create, read, update, and delete chirps
+Create a new API method that inserts mentions
+Create a new API method that retrieves chirps that a user is mentioned in
+Call the
+spUserMentions
+stored procedure that you created earlier
+ADVANCED
+When a chirp is created, check to see if there are mentions in the chirp text and add it to the database
+Mentions should be put in chirps with the format
+@username
+.
+Example Chirp:
+hi @matt it was good to see you in class!
+If it does, add a mention to the database as well as the chirp
+HINT: You'll have to parse the string and lookup the user by name (use like!)
+If you don't have a username on your table, you can use
+userid
+(i.e.
+@1
+instead of
+@matt
+)
+Add the ability in your app to click a username and view all of the chirps that user is mentioned in
+Important: There is some creativity that will be needed on your part to put a good interface together that works for this!
