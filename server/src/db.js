@@ -4,10 +4,10 @@ import { config } from './config';
 
 let pool = mysql.createPool({
     connectionLimit: 10,
-    host: 'localhost',
-    database: 'chirpr',
-    user: 'chirprapp',
-    password: 'somePassword',
+    host: config.DB_HOST,
+    user: config.DB_USER,
+    password: config.DB_PASSWORD,
+    database: config.DATABASE
 });
 
 function getChirps() {
